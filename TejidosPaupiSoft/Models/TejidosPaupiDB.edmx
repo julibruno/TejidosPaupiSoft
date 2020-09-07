@@ -1,0 +1,428 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TejidosPaupiDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Compras">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Numero" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="Observaciones" Type="varchar" MaxLength="200" />
+          <Property Name="Subtotal" Type="int" />
+          <Property Name="Descuentos" Type="int" />
+          <Property Name="Total" Type="int" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaActualizacion" Type="datetime" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Insumos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdTipoInsumo" Type="int" Nullable="false" />
+          <Property Name="IdTipoLana" Type="int" />
+          <Property Name="Color" Type="varchar" MaxLength="50" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+          <Property Name="Observaciones" Type="varchar" MaxLength="500" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaActualizacion" Type="datetime" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InsumosXCompra">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCompras" Type="int" Nullable="false" />
+          <Property Name="IdInsumos" Type="int" Nullable="false" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+          <Property Name="Precio" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoInsumo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdUnidadMedida" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoLana">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UnidadMedida">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Insumos_TipoInsumo">
+          <End Role="TipoInsumo" Type="Self.TipoInsumo" Multiplicity="1" />
+          <End Role="Insumos" Type="Self.Insumos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoInsumo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Insumos">
+              <PropertyRef Name="IdTipoInsumo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Insumos_TipoLana">
+          <End Role="TipoLana" Type="Self.TipoLana" Multiplicity="0..1" />
+          <End Role="Insumos" Type="Self.Insumos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoLana">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Insumos">
+              <PropertyRef Name="IdTipoLana" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InsumosXCompra_Compras">
+          <End Role="Compras" Type="Self.Compras" Multiplicity="1" />
+          <End Role="InsumosXCompra" Type="Self.InsumosXCompra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compras">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InsumosXCompra">
+              <PropertyRef Name="IdCompras" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InsumosXCompra_Insumos">
+          <End Role="Insumos" Type="Self.Insumos" Multiplicity="1" />
+          <End Role="InsumosXCompra" Type="Self.InsumosXCompra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Insumos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InsumosXCompra">
+              <PropertyRef Name="IdInsumos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TipoInsumo_UnidadMedida">
+          <End Role="UnidadMedida" Type="Self.UnidadMedida" Multiplicity="1" />
+          <End Role="TipoInsumo" Type="Self.TipoInsumo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnidadMedida">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TipoInsumo">
+              <PropertyRef Name="IdUnidadMedida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TejidosPaupiDBModelStoreContainer">
+          <EntitySet Name="Compras" EntityType="Self.Compras" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Insumos" EntityType="Self.Insumos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InsumosXCompra" EntityType="Self.InsumosXCompra" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoInsumo" EntityType="Self.TipoInsumo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoLana" EntityType="Self.TipoLana" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnidadMedida" EntityType="Self.UnidadMedida" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Insumos_TipoInsumo" Association="Self.FK_Insumos_TipoInsumo">
+            <End Role="TipoInsumo" EntitySet="TipoInsumo" />
+            <End Role="Insumos" EntitySet="Insumos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Insumos_TipoLana" Association="Self.FK_Insumos_TipoLana">
+            <End Role="TipoLana" EntitySet="TipoLana" />
+            <End Role="Insumos" EntitySet="Insumos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InsumosXCompra_Compras" Association="Self.FK_InsumosXCompra_Compras">
+            <End Role="Compras" EntitySet="Compras" />
+            <End Role="InsumosXCompra" EntitySet="InsumosXCompra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InsumosXCompra_Insumos" Association="Self.FK_InsumosXCompra_Insumos">
+            <End Role="Insumos" EntitySet="Insumos" />
+            <End Role="InsumosXCompra" EntitySet="InsumosXCompra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TipoInsumo_UnidadMedida" Association="Self.FK_TipoInsumo_UnidadMedida">
+            <End Role="UnidadMedida" EntitySet="UnidadMedida" />
+            <End Role="TipoInsumo" EntitySet="TipoInsumo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TejidosPaupiDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Insumos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdTipoInsumo" Type="Int32" Nullable="false" />
+          <Property Name="IdTipoLana" Type="Int32" />
+          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <Property Name="Observaciones" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaActualizacion" Type="DateTime" Precision="3" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TipoInsumo" Relationship="Self.FK_Insumos_TipoInsumo" FromRole="Insumos" ToRole="TipoInsumo" />
+          <NavigationProperty Name="TipoLana" Relationship="Self.FK_Insumos_TipoLana" FromRole="Insumos" ToRole="TipoLana" />
+          <NavigationProperty Name="InsumosXCompra" Relationship="TejidosPaupiDBModel.FK_InsumosXCompra_Insumos" FromRole="Insumos" ToRole="InsumosXCompra" />
+        </EntityType>
+        <EntityType Name="TipoInsumo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdUnidadMedida" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Insumos" Relationship="Self.FK_Insumos_TipoInsumo" FromRole="TipoInsumo" ToRole="Insumos" />
+          <NavigationProperty Name="UnidadMedida" Relationship="Self.FK_TipoInsumo_UnidadMedida" FromRole="TipoInsumo" ToRole="UnidadMedida" />
+        </EntityType>
+        <EntityType Name="TipoLana">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Insumos" Relationship="Self.FK_Insumos_TipoLana" FromRole="TipoLana" ToRole="Insumos" />
+        </EntityType>
+        <EntityType Name="UnidadMedida">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TipoInsumo" Relationship="Self.FK_TipoInsumo_UnidadMedida" FromRole="UnidadMedida" ToRole="TipoInsumo" />
+        </EntityType>
+        <Association Name="FK_Insumos_TipoInsumo">
+          <End Role="TipoInsumo" Type="Self.TipoInsumo" Multiplicity="1" />
+          <End Role="Insumos" Type="Self.Insumos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoInsumo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Insumos">
+              <PropertyRef Name="IdTipoInsumo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Insumos_TipoLana">
+          <End Role="TipoLana" Type="Self.TipoLana" Multiplicity="0..1" />
+          <End Role="Insumos" Type="Self.Insumos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoLana">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Insumos">
+              <PropertyRef Name="IdTipoLana" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TipoInsumo_UnidadMedida">
+          <End Role="UnidadMedida" Type="Self.UnidadMedida" Multiplicity="1" />
+          <End Role="TipoInsumo" Type="Self.TipoInsumo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnidadMedida">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TipoInsumo">
+              <PropertyRef Name="IdUnidadMedida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TejidosPaupiDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Insumos" EntityType="Self.Insumos" />
+          <EntitySet Name="TipoInsumo" EntityType="Self.TipoInsumo" />
+          <EntitySet Name="TipoLana" EntityType="Self.TipoLana" />
+          <EntitySet Name="UnidadMedida" EntityType="Self.UnidadMedida" />
+          <AssociationSet Name="FK_Insumos_TipoInsumo" Association="Self.FK_Insumos_TipoInsumo">
+            <End Role="TipoInsumo" EntitySet="TipoInsumo" />
+            <End Role="Insumos" EntitySet="Insumos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Insumos_TipoLana" Association="Self.FK_Insumos_TipoLana">
+            <End Role="TipoLana" EntitySet="TipoLana" />
+            <End Role="Insumos" EntitySet="Insumos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TipoInsumo_UnidadMedida" Association="Self.FK_TipoInsumo_UnidadMedida">
+            <End Role="UnidadMedida" EntitySet="UnidadMedida" />
+            <End Role="TipoInsumo" EntitySet="TipoInsumo" />
+          </AssociationSet>
+          <EntitySet Name="Compras" EntityType="TejidosPaupiDBModel.Compras" />
+          <EntitySet Name="InsumosXCompra" EntityType="TejidosPaupiDBModel.InsumosXCompra" />
+          <AssociationSet Name="FK_InsumosXCompra_Compras" Association="TejidosPaupiDBModel.FK_InsumosXCompra_Compras">
+            <End Role="Compras" EntitySet="Compras" />
+            <End Role="InsumosXCompra" EntitySet="InsumosXCompra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InsumosXCompra_Insumos" Association="TejidosPaupiDBModel.FK_InsumosXCompra_Insumos">
+            <End Role="Insumos" EntitySet="Insumos" />
+            <End Role="InsumosXCompra" EntitySet="InsumosXCompra" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Compras">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Numero" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Observaciones" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Subtotal" Type="Int32" />
+          <Property Name="Descuentos" Type="Int32" />
+          <Property Name="Total" Type="Int32" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaActualizacion" Type="DateTime" Precision="3" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="InsumosXCompra" Relationship="TejidosPaupiDBModel.FK_InsumosXCompra_Compras" FromRole="Compras" ToRole="InsumosXCompra" />
+        </EntityType>
+        <EntityType Name="InsumosXCompra">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCompras" Type="Int32" Nullable="false" />
+          <Property Name="IdInsumos" Type="Int32" Nullable="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <Property Name="Precio" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Compras" Relationship="TejidosPaupiDBModel.FK_InsumosXCompra_Compras" FromRole="InsumosXCompra" ToRole="Compras" />
+          <NavigationProperty Name="Insumos" Relationship="TejidosPaupiDBModel.FK_InsumosXCompra_Insumos" FromRole="InsumosXCompra" ToRole="Insumos" />
+        </EntityType>
+        <Association Name="FK_InsumosXCompra_Compras">
+          <End Type="TejidosPaupiDBModel.Compras" Role="Compras" Multiplicity="1" />
+          <End Type="TejidosPaupiDBModel.InsumosXCompra" Role="InsumosXCompra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compras">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InsumosXCompra">
+              <PropertyRef Name="IdCompras" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InsumosXCompra_Insumos">
+          <End Type="TejidosPaupiDBModel.Insumos" Role="Insumos" Multiplicity="1" />
+          <End Type="TejidosPaupiDBModel.InsumosXCompra" Role="InsumosXCompra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Insumos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InsumosXCompra">
+              <PropertyRef Name="IdInsumos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TejidosPaupiDBModelStoreContainer" CdmEntityContainer="TejidosPaupiDBEntities">
+          <EntitySetMapping Name="Insumos">
+            <EntityTypeMapping TypeName="TejidosPaupiDBModel.Insumos">
+              <MappingFragment StoreEntitySet="Insumos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdTipoInsumo" ColumnName="IdTipoInsumo" />
+                <ScalarProperty Name="IdTipoLana" ColumnName="IdTipoLana" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoInsumo">
+            <EntityTypeMapping TypeName="TejidosPaupiDBModel.TipoInsumo">
+              <MappingFragment StoreEntitySet="TipoInsumo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdUnidadMedida" ColumnName="IdUnidadMedida" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoLana">
+            <EntityTypeMapping TypeName="TejidosPaupiDBModel.TipoLana">
+              <MappingFragment StoreEntitySet="TipoLana">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnidadMedida">
+            <EntityTypeMapping TypeName="TejidosPaupiDBModel.UnidadMedida">
+              <MappingFragment StoreEntitySet="UnidadMedida">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Compras">
+            <EntityTypeMapping TypeName="TejidosPaupiDBModel.Compras">
+              <MappingFragment StoreEntitySet="Compras">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Descuentos" ColumnName="Descuentos" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InsumosXCompra">
+            <EntityTypeMapping TypeName="TejidosPaupiDBModel.InsumosXCompra">
+              <MappingFragment StoreEntitySet="InsumosXCompra">
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="IdInsumos" ColumnName="IdInsumos" />
+                <ScalarProperty Name="IdCompras" ColumnName="IdCompras" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

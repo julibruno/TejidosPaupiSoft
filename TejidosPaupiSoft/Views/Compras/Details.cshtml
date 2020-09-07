@@ -1,0 +1,90 @@
+﻿@model TejidosPaupiSoft.Models.Compras
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="dashboard-wrapper">
+    <div class="container-fluid  dashboard-content">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4>Detalle Compras</h4>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Numero)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Numero)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Fecha)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Fecha)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Observaciones)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Observaciones)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Subtotal)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Subtotal)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Descuentos)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Descuentos)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Total)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Total)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.FechaCreacion)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.FechaCreacion)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.FechaActualizacion)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.FechaActualizacion)
+                        </dd>
+
+                     
+
+                    </dl>
+                </div>
+                <p>
+                    <a href="/Compras" id="Cancelar" class="btn btn-rounded btn-outline-primary">Volver</a>
+                </p>
+                </div>
+            </div>
+        </div>
+    </div>
+   

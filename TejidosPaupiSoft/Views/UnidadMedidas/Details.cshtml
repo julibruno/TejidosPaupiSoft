@@ -1,0 +1,44 @@
+﻿@model TejidosPaupiSoft.Models.UnidadMedida
+
+@{
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <div class="container-fluid  dashboard-content">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4>Detalle Unidad de Medida</h4>
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Descripcion)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Descripcion)
+                            </dd>
+                      </dl>
+                        <div class="form-group">                            
+                                <a href="/UnidadMedidas" id="Cancelar" class="btn btn-rounded btn-outline-primary">Volver</a>                         
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

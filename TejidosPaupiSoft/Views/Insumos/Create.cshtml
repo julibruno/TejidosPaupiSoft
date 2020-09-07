@@ -1,0 +1,81 @@
+﻿@model TejidosPaupiSoft.Models.Insumos
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@if (ViewBag.ObjetoRepetido != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+            alert("El elemento @ViewBag.ObjetoRepetido ya existe. Verifique")
+        }
+
+    
+    </script>
+}
+<div class="dashboard-wrapper">
+    <div class="container-fluid  dashboard-content">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            <h4>Insumos</h4>
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.IdTipoInsumo, "Tipo de Insumo", htmlAttributes: new { @class = "control-label col-md-2 TipoInsumo" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("IdTipoInsumo", null,"", htmlAttributes: new { @class = "form-control" , @onchange="alerta(this)"  })
+                                    @Html.ValidationMessageFor(model => model.IdTipoInsumo, "", new { @class = "text-danger"},"")
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.IdTipoLana, "Tipo de Lana", htmlAttributes: new { @class = "control-label col-md-2"})
+                                <div class="col-md-10">
+                                    @Html.DropDownList("IdTipoLana", null,"", htmlAttributes: new { @class = "form-control" } )
+                                    @Html.ValidationMessageFor(model => model.IdTipoLana, "" ,new { @class = "text-danger" },"")
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Color, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control ColorLabel" } })
+                                    @Html.ValidationMessageFor(model => model.Color, "Colocar solo si es necesario", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Observaciones, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Observaciones, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Observaciones, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                          
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Crear" class="btn btn-rounded btn-success" />
+                                    <a href="/Insumos" id="Cancelar" class="btn btn-rounded btn-danger">Cancelar</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                 </div>
+            </div>
+           </div>
+        </div>
+       </div>

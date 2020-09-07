@@ -1,0 +1,63 @@
+﻿@model TejidosPaupiSoft.Models.Compras
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+<div class="dashboard-wrapper">
+    <div class="container-fluid dashboard-content">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            <h4>Editar Compras</h4>
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.Id)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Numero, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DisplayFor(model => model.Numero, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Numero, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Fecha, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Fecha, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Observaciones, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Observaciones, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Observaciones, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Editar" class="btn btn-rounded btn-outline-primary" />
+                                    <a href="/Compras" id="Cancelar" class="btn btn-rounded btn-outline-danger">Cancelar</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

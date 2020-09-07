@@ -1,0 +1,80 @@
+﻿@model TejidosPaupiSoft.Models.Insumos
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="dashboard-wrapper">
+    <div class="container-fluid  dashboard-content">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4>Eliminar Insumo</h4>
+                    <p>¿Estas seguro que deseas elimninar el Insumo?</p>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Descripcion)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Descripcion)
+                        </dd>
+
+                        <dt>
+                            Tipo de Insumo
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.TipoInsumo.Descripcion)
+                        </dd>
+
+                        <dt>
+                           Tipo de Lana
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.TipoLana.Descripcion)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Color)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Color)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Cantidad)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Cantidad)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Observaciones)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Observaciones)
+                        </dd>
+
+
+                    </dl>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Eliminar" class="btn btn-rounded btn-outline-danger" />
+                    <a href="/Insumos" id="Cancelar" class="btn btn-rounded btn-outline-danger">Cancelar</a>
+                </div>
+                    }
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<
