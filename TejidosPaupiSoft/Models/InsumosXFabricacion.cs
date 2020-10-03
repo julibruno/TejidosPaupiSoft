@@ -12,19 +12,14 @@ namespace TejidosPaupiSoft.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class TipoLana
+    public partial class InsumosXFabricacion
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TipoLana()
-        {
-            this.Insumos = new HashSet<Insumos>();
-        }
-    
         public int Id { get; set; }
-        public string Descripcion { get; set; }
-        public bool Estado { get; set; }
+        public int IdFabricacionProducto { get; set; }
+        public int IdInsumo { get; set; }
+        public int Cantidad { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Insumos> Insumos { get; set; }
+        public virtual FabricacionProducto FabricacionProducto { get; set; }
+        public virtual Insumos Insumos { get; set; }
     }
 }

@@ -16,6 +16,12 @@
         <EntityTypeShape EntityType="TejidosPaupiDBModel.InsumosXCompra" Width="1.5" PointX="7.5" PointY="1.625" />
         <AssociationConnector Association="TejidosPaupiDBModel.FK_InsumosXCompra_Compras" />
         <AssociationConnector Association="TejidosPaupiDBModel.FK_InsumosXCompra_Insumos" />
+        <EntityTypeShape EntityType="TejidosPaupiDBModel.FabricacionProducto" Width="1.5" PointX="8.625" PointY="9.375" />
+        <EntityTypeShape EntityType="TejidosPaupiDBModel.InsumosXFabricacion" Width="1.5" PointX="10.875" PointY="2.625" />
+        <EntityTypeShape EntityType="TejidosPaupiDBModel.Producto" Width="1.5" PointX="6.375" PointY="9.875" />
+        <AssociationConnector Association="TejidosPaupiDBModel.FK_FabricacionProducto_Producto" />
+        <AssociationConnector Association="TejidosPaupiDBModel.FK_InsumosXFabricacion_FabricacionProducto" />
+        <AssociationConnector Association="TejidosPaupiDBModel.FK_InsumosXFabricacion_Insumos" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

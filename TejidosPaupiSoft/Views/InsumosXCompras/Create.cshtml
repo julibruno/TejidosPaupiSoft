@@ -1,0 +1,84 @@
+﻿@model TejidosPaupiSoft.Models.InsumosXCompra
+
+@{
+    ViewBag.Title = "Create";
+
+
+}
+
+
+<div class="dashboard-wrapper">
+    <div class="container-fluid  dashboard-content">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <h4>Cantidad y Precio del Insumo</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.IdCompras)
+                        @Html.HiddenFor(model => model.IdInsumos)
+
+                        <div class="form-group">
+
+                            @Html.LabelFor(model => model.Insumos, "Insumo seleccionado: ", htmlAttributes: new { @class = "" })
+                            <b>
+                                @ViewBag.InsumoDescripcion
+                            </b>
+
+                        </div>
+                        <div class="form-group">
+
+                            @Html.LabelFor(model => model.Insumos, "Unidad de Medida: ", htmlAttributes: new { @class = "" })
+                            <b>
+                                @ViewBag.InsumoUnidadMedida
+                            </b>
+
+                        </div>
+                        @if (@ViewBag.InsumoUnidadMedida == "Gramos") {
+                        <div class="form-group">
+
+                            Calculadora por 100 gr:
+                            <b>
+                                <input  class="form-control col-md-2" id="Calculadora" type="number" min="0"  />
+                            </b>
+
+                        </div>
+                        }
+                        <div class="form-group ">
+                        <label class="control-label col-md-2"> Cantidad de @ViewBag.InsumoUnidadMedida</label>
+                        
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Cantidad, new { htmlAttributes = new { @class = "form-control" , @id="CantidadInput"} })
+                                @Html.ValidationMessageFor(model => model.Cantidad, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Precio, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Precio, new { htmlAttributes = new { @class = "form-control", @id="PrecioInput" } })
+                                @Html.ValidationMessageFor(model => model.Precio,"", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Crear" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+
+                    }
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="~/Content/assets/libs/js/ScriptData.js"></script>

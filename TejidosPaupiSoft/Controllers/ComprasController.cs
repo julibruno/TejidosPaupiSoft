@@ -17,6 +17,8 @@ namespace TejidosPaupiSoft.Controllers
         // GET: Compras
         public ActionResult Index()
         {
+
+
             return View(db.Compras.ToList().Where(x=>x.Estado==true));
         }
 
@@ -25,7 +27,7 @@ namespace TejidosPaupiSoft.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Compras");
             }
             Compras compras = db.Compras.Find(id);
             if (compras == null)
@@ -59,7 +61,7 @@ namespace TejidosPaupiSoft.Controllers
           
                 db.Compras.Add(compras);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("index","InsumosXCompras",new { IdCompraGenerada = compras.Id });
             }
 
             return View(compras);
@@ -87,7 +89,7 @@ namespace TejidosPaupiSoft.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Compras");
             }
             Compras compras = db.Compras.Find(id);
             if (compras == null)
@@ -107,19 +109,26 @@ namespace TejidosPaupiSoft.Controllers
             if (ModelState.IsValid)
             {
 
+                compras.FechaActualizacion = DateTime.Now;
+
+                compras.Total= compras.Subtotal - compras.Descuentos;
+
                 db.Entry(compras).State = EntityState.Modified;
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(compras);
         }
 
+
+
         // GET: Compras/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Compras");
             }
             Compras compras = db.Compras.Find(id);
             if (compras == null)
@@ -149,5 +158,7 @@ namespace TejidosPaupiSoft.Controllers
             }
             base.Dispose(disposing);
         }
+
+        
     }
 }

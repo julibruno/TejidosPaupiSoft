@@ -11,8 +11,7 @@ namespace TejidosPaupiSoft.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class UnidadMedida
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,7 +21,6 @@ namespace TejidosPaupiSoft.Models
         }
     
         public int Id { get; set; }
-        [Required]
         public string Descripcion { get; set; }
         public bool Estado { get; set; }
     

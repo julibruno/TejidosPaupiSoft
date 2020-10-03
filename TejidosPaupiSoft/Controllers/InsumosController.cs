@@ -73,6 +73,7 @@ namespace TejidosPaupiSoft.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Descripcion,IdTipoInsumo,IdTipoLana,Color,Cantidad,Observaciones,FechaCreacion,FechaActualizacion,Estado")] Insumos insumos)
         {
+            insumos.Descripcion = ColocarDescripcion(insumos);
             if (ModelState.IsValid)
             {
 
@@ -84,12 +85,11 @@ namespace TejidosPaupiSoft.Controllers
                 }
                 else
                 {
-                  
-                    insumos.Descripcion = ColocarDescripcion(insumos);
-                    insumos.Estado = true;
-                    insumos.FechaCreacion = DateTime.Now;
+
                     insumos.Cantidad = 0;
                     
+                    insumos.Estado = true;
+                    insumos.FechaCreacion = DateTime.Now;
                     db.Insumos.Add(insumos);
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -148,16 +148,12 @@ namespace TejidosPaupiSoft.Controllers
                 }
                 else
                 {
-                    Insumos insumosAnterior = db.Insumos.Find(insumos.Id);
-                    //Lo anterior queda igual (Datos que no esta en el form, por eso vienen en null del modelo)
-                    insumos.FechaCreacion = insumosAnterior.FechaCreacion;
-                    insumos.Estado = true;
-                    insumos.Cantidad = insumosAnterior.Cantidad;
+                   
+                 
                     //Lo nuevo
                     insumos.FechaActualizacion = DateTime.Now;
                     insumos.Descripcion = ColocarDescripcion(insumos);
                     
-
                     db.Entry(insumos).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -201,6 +197,23 @@ namespace TejidosPaupiSoft.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+
+
+        public void ActualizacionStock(Insumos insumo)
+        {
+
+            Insumos insumoParaEditar = db.Insumos.Find(insumo.Id);
+
+            insumoParaEditar.Cantidad = SumarComprasDescontarVentar(insumo);
+
+
+        }
+
+        private int SumarComprasDescontarVentar(Insumos insumo)
+        {
+            throw new NotImplementedException();
         }
     }
 }

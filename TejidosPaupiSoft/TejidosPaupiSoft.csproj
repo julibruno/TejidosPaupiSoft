@@ -154,6 +154,7 @@
     <Content Include="Content\assets\libs\js\google_map.js" />
     <Content Include="Content\assets\libs\js\jvectormap.custom.js" />
     <Content Include="Content\assets\libs\js\main-js.js" />
+    <Content Include="Content\assets\libs\js\ScriptData.js" />
     <Content Include="Content\assets\libs\js\Scripts.js" />
     <Content Include="Content\assets\vendor\Archivos\buttons.colVis.min.js" />
     <Content Include="Content\assets\vendor\Archivos\buttons.html5.min.js" />
@@ -539,8 +540,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ComprasController.cs" />
+    <Compile Include="Controllers\FabricacionProductosController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\InsumosController.cs" />
+    <Compile Include="Controllers\InsumosXComprasController.cs" />
+    <Compile Include="Controllers\InsumosXFabricacionsController.cs" />
+    <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\TipoInsumosController.cs" />
     <Compile Include="Controllers\TipoLanasController.cs" />
     <Compile Include="Controllers\UnidadMedidasController.cs" />
@@ -550,10 +555,20 @@
     <Compile Include="Models\Compras.cs">
       <DependentUpon>TejidosPaupiDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\FabricacionProducto.cs">
+      <DependentUpon>TejidosPaupiDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Insumos.cs">
       <DependentUpon>TejidosPaupiDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\InsumosXCompra.cs">
+      <DependentUpon>TejidosPaupiDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\InsumosXFabricacion.cs">
+      <DependentUpon>TejidosPaupiDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelosVarios\ListaInsumosParaCompras.cs" />
+    <Compile Include="Models\Producto.cs">
       <DependentUpon>TejidosPaupiDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TejidosPaupiDB.Context.cs">
@@ -663,6 +678,31 @@
     <Content Include="Views\Compras\Edit.cshtml" />
     <Content Include="Views\Compras\Index.cshtml" />
     <Content Include="Views\Compras\Create.cshtml" />
+    <Content Include="Views\InsumosXCompras\Create.cshtml" />
+    <Content Include="Views\InsumosXCompras\Delete.cshtml" />
+    <Content Include="Views\InsumosXCompras\Details.cshtml" />
+    <Content Include="Views\InsumosXCompras\Edit.cshtml" />
+    <Content Include="Views\InsumosXCompras\Index.cshtml" />
+    <Content Include="Views\Shared\_Insumos.cshtml" />
+    <Content Include="Views\InsumosXCompras\PreviaCreate.cshtml" />
+    <Content Include="Views\Productos\Create.cshtml" />
+    <Content Include="Views\Productos\Delete.cshtml" />
+    <Content Include="Views\Productos\Details.cshtml" />
+    <Content Include="Views\Productos\Edit.cshtml" />
+    <Content Include="Views\Productos\Index.cshtml" />
+    <Content Include="Views\Productos\IndexParaFabricacion.cshtml" />
+    <Content Include="Views\FabricacionProductos\Create.cshtml" />
+    <Content Include="Views\FabricacionProductos\Delete.cshtml" />
+    <Content Include="Views\FabricacionProductos\Details.cshtml" />
+    <Content Include="Views\FabricacionProductos\Edit.cshtml" />
+    <Content Include="Views\FabricacionProductos\Index.cshtml" />
+    <Content Include="Views\InsumosXFabricacions\Create.cshtml" />
+    <Content Include="Views\InsumosXFabricacions\Delete.cshtml" />
+    <Content Include="Views\InsumosXFabricacions\Details.cshtml" />
+    <Content Include="Views\InsumosXFabricacions\Edit.cshtml" />
+    <Content Include="Views\InsumosXFabricacions\Index.cshtml" />
+    <Content Include="Views\Shared\_InsumosFabricacion.cshtml" />
+    <Content Include="Views\InsumosXFabricacions\PreviaCreateFabricacion.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -31,5 +31,8 @@ namespace TejidosPaupiSoft.Models
         public virtual DbSet<UnidadMedida> UnidadMedida { get; set; }
         public virtual DbSet<Compras> Compras { get; set; }
         public virtual DbSet<InsumosXCompra> InsumosXCompra { get; set; }
+        public virtual DbSet<FabricacionProducto> FabricacionProducto { get; set; }
+        public virtual DbSet<InsumosXFabricacion> InsumosXFabricacion { get; set; }
+        public virtual DbSet<Producto> Producto { get; set; }
     }
 }

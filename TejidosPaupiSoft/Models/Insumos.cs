@@ -11,20 +11,18 @@ namespace TejidosPaupiSoft.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Insumos
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Insumos()
         {
             this.InsumosXCompra = new HashSet<InsumosXCompra>();
+            this.InsumosXFabricacion = new HashSet<InsumosXFabricacion>();
         }
     
         public int Id { get; set; }
-        [Required]
         public string Descripcion { get; set; }
-        [Required]
         public int IdTipoInsumo { get; set; }
         public Nullable<int> IdTipoLana { get; set; }
         public string Color { get; set; }
@@ -38,5 +36,7 @@ namespace TejidosPaupiSoft.Models
         public virtual TipoLana TipoLana { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InsumosXCompra> InsumosXCompra { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<InsumosXFabricacion> InsumosXFabricacion { get; set; }
     }
 }

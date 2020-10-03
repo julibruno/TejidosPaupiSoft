@@ -11,8 +11,7 @@ namespace TejidosPaupiSoft.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Compras
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,9 +22,6 @@ namespace TejidosPaupiSoft.Models
     
         public int Id { get; set; }
         public int Numero { get; set; }
-       
-        [Required]
-        [DataType(DataType.Date)]
         public System.DateTime Fecha { get; set; }
         public string Observaciones { get; set; }
         public Nullable<int> Subtotal { get; set; }

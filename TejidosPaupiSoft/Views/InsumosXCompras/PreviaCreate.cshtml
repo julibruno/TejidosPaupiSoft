@@ -1,0 +1,41 @@
+﻿@model TejidosPaupiSoft.Models.InsumosXCompra
+
+@{
+    ViewBag.Title = "PreviaCreate";
+}
+@if (ViewBag.ObjetoRepetido != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+            alert("El insumo @ViewBag.ObjetoRepetido ya se encuentra registrado en esta compra. Verifique")
+        }
+    </script>
+}
+
+<div class="dashboard-wrapper">
+    <div class="container-fluid  dashboard-content">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+
+
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="alert alert-primary" role="alert">
+                                Selecciona cual es el insumo que compraste
+                            </div>
+                        </div>
+
+
+                        @Html.Partial("_Insumos", (IEnumerable<TejidosPaupiSoft.Models.Insumos>)ViewBag.ListaInsumos)
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

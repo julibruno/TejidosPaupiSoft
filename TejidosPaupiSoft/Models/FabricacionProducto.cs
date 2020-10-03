@@ -12,21 +12,25 @@ namespace TejidosPaupiSoft.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class TipoInsumo
+    public partial class FabricacionProducto
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TipoInsumo()
+        public FabricacionProducto()
         {
-            this.Insumos = new HashSet<Insumos>();
+            this.InsumosXFabricacion = new HashSet<InsumosXFabricacion>();
         }
     
         public int Id { get; set; }
-        public string Descripcion { get; set; }
-        public int IdUnidadMedida { get; set; }
-        public bool Estado { get; set; }
+        public int IdProducto { get; set; }
+        public string Observaciones { get; set; }
+        public Nullable<int> Costo { get; set; }
+        public Nullable<int> PrecioSugerido { get; set; }
+        public System.DateTime FechaCreacion { get; set; }
+        public Nullable<System.DateTime> FechaActualizacion { get; set; }
+        public Nullable<bool> Estado { get; set; }
     
+        public virtual Producto Producto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Insumos> Insumos { get; set; }
-        public virtual UnidadMedida UnidadMedida { get; set; }
+        public virtual ICollection<InsumosXFabricacion> InsumosXFabricacion { get; set; }
     }
 }

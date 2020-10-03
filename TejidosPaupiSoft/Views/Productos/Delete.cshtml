@@ -1,0 +1,39 @@
+﻿@model TejidosPaupiSoft.Models.Producto
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="dashboard-wrapper">
+    <div class="container-fluid  dashboard-content">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4>Eliminar Producto</h4>
+                    <p>¿Estas seguro que deseas elimninar el Producto?</p>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Descripcion)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Descripcion)
+                        </dd>
+
+                    </dl>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color">
+                            <input type="submit" value="Eliminar" class="btn btn-rounded btn-outline-danger" />
+                            <a href="/Productos" id="Cancelar" class="btn btn-rounded btn-outline-danger">Cancelar</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

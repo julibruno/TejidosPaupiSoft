@@ -1,0 +1,42 @@
+﻿@model TejidosPaupiSoft.Models.InsumosXFabricacion
+
+@{
+    ViewBag.Title = "PreviaCreateFabricacion";
+}
+
+@if (ViewBag.ObjetoRepetido != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+            alert("El insumo @ViewBag.ObjetoRepetido ya se encuentra registrado en esta Elaboracion. Verifique")
+        }
+    </script>
+}
+
+<div class="dashboard-wrapper">
+    <div class="container-fluid  dashboard-content">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+
+
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="alert alert-primary" role="alert">
+                                Selecciona los insumos que componen al Producto elaborado
+                            </div>
+                        </div>
+
+
+                        @Html.Partial("_InsumosFabricacion", (IEnumerable<TejidosPaupiSoft.Models.Insumos>)ViewBag.ListaInsumos)
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
