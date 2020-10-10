@@ -12,7 +12,7 @@
                 <div class="card">
                     <h5 class="card-header">Insumos</h5>
                     <div class="card-body">
-                        <a href="/Insumos/Create" id="BotonCrear" class="btn btn-rounded btn-outline-primary">Crear Nuevo Insumo</a>
+                        <a href="/Insumos/Create" id="BotonCrear" class="btn btn-rounded btn-outline-secondary">Crear Nuevo Insumo</a>
 
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered first">
@@ -24,14 +24,16 @@
                                         <th>
                                             Tipo de Lana
                                         </th>
-                                  
+
                                         <th>
                                             @Html.DisplayNameFor(model => model.Color)
                                         </th>
                                         <th>
                                             @Html.DisplayNameFor(model => model.Cantidad)
                                         </th>
-
+                                        <th>
+                                            Unidad de Medida
+                                        </th>
 
 
                                         <th>Acciones</th>
@@ -46,14 +48,16 @@
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.TipoLana.Descripcion)
                                             </td>
-                                           
+
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Color)
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Cantidad)
                                             </td>
-
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TipoInsumo.UnidadMedida.Descripcion)
+                                            </td>
 
 
                                             <td>

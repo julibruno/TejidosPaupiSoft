@@ -74,6 +74,11 @@ namespace TejidosPaupiSoft.Controllers
         public ActionResult Create([Bind(Include = "Id,Descripcion,IdTipoInsumo,IdTipoLana,Color,Cantidad,Observaciones,FechaCreacion,FechaActualizacion,Estado")] Insumos insumos)
         {
             insumos.Descripcion = ColocarDescripcion(insumos);
+            insumos.FechaCreacion = DateTime.Now;
+            insumos.Cantidad = 0;
+            insumos.Estado = true;
+
+
             if (ModelState.IsValid)
             {
 
@@ -86,9 +91,9 @@ namespace TejidosPaupiSoft.Controllers
                 else
                 {
 
-                    insumos.Cantidad = 0;
+                  
                     
-                    insumos.Estado = true;
+                   
                     insumos.FechaCreacion = DateTime.Now;
                     db.Insumos.Add(insumos);
                     db.SaveChanges();

@@ -37,7 +37,14 @@
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
                                     <input type="submit" value="Crear" class="btn btn-rounded btn-success" />
-                                    <a href="/Productos" id="Cancelar" class="btn btn-rounded btn-danger">Cancelar</a>
+
+                                    @{
+                                        if (ViewBag.IdFabricacionGenerada == null)
+                                        {
+                                            <a href="/Productos" id="Cancelar" class="btn btn-rounded btn-danger">Cancelar</a>
+                                        }
+                                    }
+
                                 </div>
                             </div>
                         </div>

@@ -40,7 +40,12 @@ namespace TejidosPaupiSoft.Controllers
         // GET: Compras/Create
         public ActionResult Create()
         {
-            return View();
+            Compras compras = new Compras();
+
+            compras.Fecha = DateTime.Now;
+
+
+            return View(compras);
         }
 
         // POST: Compras/Create
@@ -116,7 +121,7 @@ namespace TejidosPaupiSoft.Controllers
                 db.Entry(compras).State = EntityState.Modified;
 
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Delete", "InsumosXCompras", new { IdCompraGenerada = compras.Id });
             }
             return View(compras);
         }

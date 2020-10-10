@@ -545,10 +545,13 @@
     <Compile Include="Controllers\InsumosController.cs" />
     <Compile Include="Controllers\InsumosXComprasController.cs" />
     <Compile Include="Controllers\InsumosXFabricacionsController.cs" />
+    <Compile Include="Controllers\LogsController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
+    <Compile Include="Controllers\StockElaboracionComprasController.cs" />
     <Compile Include="Controllers\TipoInsumosController.cs" />
     <Compile Include="Controllers\TipoLanasController.cs" />
     <Compile Include="Controllers\UnidadMedidasController.cs" />
+    <Compile Include="Controllers\VentasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -565,6 +568,9 @@
       <DependentUpon>TejidosPaupiDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\InsumosXFabricacion.cs">
+      <DependentUpon>TejidosPaupiDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Log.cs">
       <DependentUpon>TejidosPaupiDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ModelosVarios\ListaInsumosParaCompras.cs" />
@@ -593,6 +599,9 @@
       <DependentUpon>TejidosPaupiDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UnidadMedida.cs">
+      <DependentUpon>TejidosPaupiDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Venta.cs">
       <DependentUpon>TejidosPaupiDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -703,6 +712,12 @@
     <Content Include="Views\InsumosXFabricacions\Index.cshtml" />
     <Content Include="Views\Shared\_InsumosFabricacion.cshtml" />
     <Content Include="Views\InsumosXFabricacions\PreviaCreateFabricacion.cshtml" />
+    <Content Include="Views\Ventas\Create.cshtml" />
+    <Content Include="Views\Ventas\Delete.cshtml" />
+    <Content Include="Views\Ventas\Details.cshtml" />
+    <Content Include="Views\Ventas\Edit.cshtml" />
+    <Content Include="Views\Ventas\Index.cshtml" />
+    <Content Include="Views\FabricacionProductos\IndexParaVenta.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -712,6 +727,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Logs\" />
+    <Folder Include="Views\StockElaboracionCompras\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

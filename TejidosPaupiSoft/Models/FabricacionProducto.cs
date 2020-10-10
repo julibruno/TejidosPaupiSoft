@@ -18,6 +18,7 @@ namespace TejidosPaupiSoft.Models
         public FabricacionProducto()
         {
             this.InsumosXFabricacion = new HashSet<InsumosXFabricacion>();
+            this.Venta = new HashSet<Venta>();
         }
     
         public int Id { get; set; }
@@ -28,9 +29,12 @@ namespace TejidosPaupiSoft.Models
         public System.DateTime FechaCreacion { get; set; }
         public Nullable<System.DateTime> FechaActualizacion { get; set; }
         public Nullable<bool> Estado { get; set; }
+        public Nullable<int> NroElaboracion { get; set; }
     
         public virtual Producto Producto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InsumosXFabricacion> InsumosXFabricacion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Venta> Venta { get; set; }
     }
 }

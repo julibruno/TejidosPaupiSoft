@@ -34,5 +34,7 @@ namespace TejidosPaupiSoft.Models
         public virtual DbSet<FabricacionProducto> FabricacionProducto { get; set; }
         public virtual DbSet<InsumosXFabricacion> InsumosXFabricacion { get; set; }
         public virtual DbSet<Producto> Producto { get; set; }
+        public virtual DbSet<Log> Log { get; set; }
+        public virtual DbSet<Venta> Venta { get; set; }
     }
 }

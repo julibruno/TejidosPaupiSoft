@@ -154,8 +154,12 @@
 
 /* 0.1. Body / Typography
    ========================================================================== */
+/*Este es el color que tengo que tomar para el menu (Pali)
+.claseColor {
+    background-color: #F5ADB4 !important;
+}*/
 
-.BotonVolverDetails{
+.BotonVolverDetails {
     margin-left: 15px;
 }
 .control-label {
@@ -1260,7 +1264,7 @@ Top Header
     font-size: 30px;
     text-transform: uppercase;
     font-weight: 700;
-    color: #007bff;
+    color: #FF407B;
 }
 .navbar-brand:hover{
     color: #007bff;
@@ -4184,8 +4188,12 @@ Pills vertical
 .page-item.active .page-link {
     z-index: 1;
     color: #fff;
-    background-color: #5969ff;
-    border-color: #5969ff;
+    /*Este es el anterior (Original)*/
+    /*background-color: #5969ff;
+    border-color: #5969ff;*/
+    /*Este es el nuevo a pedido de pali*/
+    background-color: #DB8189;
+    border-color: #DB8189;
 }
 
 

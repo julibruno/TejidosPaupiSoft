@@ -12,17 +12,11 @@ namespace TejidosPaupiSoft.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class InsumosXFabricacion
+    public partial class Log
     {
         public int Id { get; set; }
-        public int IdFabricacionProducto { get; set; }
-        public int IdInsumo { get; set; }
-        public int Cantidad { get; set; }
-        public Nullable<int> Costo { get; set; }
-        public Nullable<int> IdInsumosXCompra { get; set; }
-    
-        public virtual FabricacionProducto FabricacionProducto { get; set; }
-        public virtual Insumos Insumos { get; set; }
-        public virtual InsumosXCompra InsumosXCompra { get; set; }
+        public string TipoOperacion { get; set; }
+        public string LogMensaje { get; set; }
+        public Nullable<System.DateTime> Ts { get; set; }
     }
 }

@@ -16,11 +16,11 @@
                     <h5 class="card-header">Seleccione el Producto elaborado</h5>
                     <div class="card-body">
                      
-                            <div class="alert alert-primary" role="alert">
+                            <div class="alert alert-danger" role="alert">
                                 Selecciona el producto elaborado. En caso de no estar en la lista Crealo ingresando al boton "Crear Nuevo Producto"
                             </div>
                    
-                        <a href="/Productos/Create" id="BotonCrear" class="btn btn-rounded btn-outline-primary">Crear Nuevo Producto</a>
+                        <a href="/Productos/Create?VolverElaboracion=true" id="BotonCrear" class="btn btn-rounded btn-outline-secondary">Crear Nuevo Producto</a>
 
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered first">
@@ -43,7 +43,7 @@
                                             </td>
 
                                             <td>
-                                                @Html.ActionLink("Seleccionar", "ProductoParaElaboracion", new { idProductoSeleccionado = item.Id }) |
+                                                @Html.ActionLink("Seleccionar", "ProductoParaElaboracion", new { idProductoSeleccionado = item.Id }) 
 
                                             </td>
                                         </tr>

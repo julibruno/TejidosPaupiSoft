@@ -14,6 +14,12 @@ namespace TejidosPaupiSoft.Models
     
     public partial class InsumosXCompra
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public InsumosXCompra()
+        {
+            this.InsumosXFabricacion = new HashSet<InsumosXFabricacion>();
+        }
+    
         public int Id { get; set; }
         public int IdCompras { get; set; }
         public int IdInsumos { get; set; }
@@ -22,5 +28,7 @@ namespace TejidosPaupiSoft.Models
     
         public virtual Compras Compras { get; set; }
         public virtual Insumos Insumos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<InsumosXFabricacion> InsumosXFabricacion { get; set; }
     }
 }

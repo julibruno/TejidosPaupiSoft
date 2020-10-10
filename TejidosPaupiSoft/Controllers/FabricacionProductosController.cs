@@ -73,7 +73,7 @@ namespace TejidosPaupiSoft.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.IdProducto = new SelectList(db.Producto, "Id", "Descripcion", fabricacionProducto.IdProducto);
+            ViewBag.IdProducto = new SelectList(db.Producto.Where(x=>x.Estado == true), "Id", "Descripcion", fabricacionProducto.IdProducto);
             return View(fabricacionProducto);
         }
 
@@ -82,13 +82,15 @@ namespace TejidosPaupiSoft.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,IdProducto,Observaciones,Costo,PrecioSugerido,FechaCreacion,FechaActualizacion,Estado")] FabricacionProducto fabricacionProducto)
+        public ActionResult Edit([Bind(Include = "Id,IdProducto,Observaciones,Costo,PrecioSugerido,FechaCreacion,FechaActualizacion,Estado,NroElaboracion")] FabricacionProducto fabricacionProducto)
         {
             if (ModelState.IsValid)
             {
+                fabricacionProducto.FechaActualizacion = DateTime.Now;
                 db.Entry(fabricacionProducto).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "InsumosXFabricacions", new { IdFabricacionGenerada = fabricacionProducto.Id });
+
             }
             ViewBag.IdProducto = new SelectList(db.Producto, "Id", "Descripcion", fabricacionProducto.IdProducto);
             return View(fabricacionProducto);
@@ -127,6 +129,12 @@ namespace TejidosPaupiSoft.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult IndexParaVenta()
+        {
+            // Retorno los Productos fabricados que tienen insumos. Es decir que tienen Costo y PrecioSugerido.
+            return View(db.FabricacionProducto.Where(x => x.Estado == true && x.Costo > 0 && x.PrecioSugerido>0).ToList());
         }
     }
 }

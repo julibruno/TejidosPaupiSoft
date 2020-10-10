@@ -51,8 +51,10 @@ namespace TejidosPaupiSoft.Controllers
         }
 
         // GET: Productos/Create
-        public ActionResult Create()
+        public ActionResult Create(bool? VolverElaboracion)
         {
+            ViewBag.IdFabricacionGenerada = VolverElaboracion;
+
             return View();
         }
 
@@ -61,13 +63,14 @@ namespace TejidosPaupiSoft.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Descripcion,FechaCreacion")] Producto producto)
+        public ActionResult Create([Bind(Include = "Id,Descripcion,FechaCreacion")] Producto producto, bool? VolverElaboracion)
         {
             if (ModelState.IsValid)
             {
                 if (!VerificarObjetoRepetido(producto))
                 {
                     ViewBag.ObjetoRepetido = producto.Descripcion;
+                    return View(producto);
                 }
                 else
                 {
@@ -75,7 +78,15 @@ namespace TejidosPaupiSoft.Controllers
                     producto.Estado = true;
                     db.Producto.Add(producto);
                     db.SaveChanges();
+                    if (VolverElaboracion == null) { 
                     return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        //var IdFabricacion = IdFabricacionGenerada;
+                     
+                        return RedirectToAction("IndexParaFabricacion","Productos");
+                    }
                 }  
             }
 
@@ -181,24 +192,45 @@ namespace TejidosPaupiSoft.Controllers
             return View(db.Producto.Where(x=>x.Estado==true).ToList());
         }
 
+
+        //CREATE DE FABRICACION PRODUCTOS
+
          public ActionResult ProductoParaElaboracion(int idProductoSeleccionado)
         {
-
-
             FabricacionProducto NuevoObjeto = new FabricacionProducto();
 
             NuevoObjeto.IdProducto = idProductoSeleccionado;
             NuevoObjeto.FechaCreacion = DateTime.Now;
-          
+            NuevoObjeto.NroElaboracion = UltimaElaboracion();
             NuevoObjeto.Estado = true;
             db.FabricacionProducto.Add(NuevoObjeto);
             db.SaveChanges();
 
-            int IdGenerado = db.FabricacionProducto.Where(x => x.IdProducto == NuevoObjeto.IdProducto && x.Estado==true).Max(x => x.Id);
+            //int IdGenerado = db.FabricacionProducto.Where(x => x.IdProducto == NuevoObjeto.IdProducto && x.Estado==true).Max(x => x.Id);
 
-            return RedirectToAction("Index", "InsumosXFabricacions", new { IdFabricacionGenerada = IdGenerado });
+            return RedirectToAction("Index", "InsumosXFabricacions", new { IdFabricacionGenerada = NuevoObjeto.Id });
             //return RedirectToAction("Index");
            
+        }
+
+        private int UltimaElaboracion()
+        {
+            int Ultimo = 0;
+
+            if(db.FabricacionProducto.Where(x => x.Estado == true).FirstOrDefault() == null)
+            {
+                Ultimo = 1;
+            }
+            else
+            {
+                Ultimo = db.FabricacionProducto.Where(x => x.Estado == true).Max(x => x.NroElaboracion).GetValueOrDefault();
+                Ultimo++;
+
+            }
+
+            return Ultimo;
+
+
         }
     }
 }

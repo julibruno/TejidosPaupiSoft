@@ -14,7 +14,7 @@
                 <div class="card">
                     <h5 class="card-header">Compras</h5>
                     <div class="card-body">
-                        <a href="/Compras/Create" id="BotonCrear" class="btn btn-rounded btn-outline-primary">Crear Nueva Compra</a>
+                        <a href="/Compras/Create" id="BotonCrear" class="btn btn-rounded btn-outline-secondary">Crear Nueva Compra</a>
 
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered first">
@@ -61,16 +61,14 @@
                                             </td>
                                             
                                             <td>
-                                                <a href="/Compras/Details/@item.Id" data-toggle="tooltip" data-placement="top" title="Detalle">
+                                                <a href="/InsumosXCompras/Details?IdCompraGenerada=@item.Id" data-toggle="tooltip" data-placement="top" title="Detalle">
                                                     <img src="~/Content/assets/images/ABM/buscar.png">
                                                 </a>
-                                                <a href="/Compras/Edit/@item.Id" data-toggle="tooltip" data-placement="top" title="Editar">
-                                                    <img src="~/Content/assets/images/ABM/Editar.png">
-                                                </a>
+                                               
                                                 <a href="/InsumosXCompras?IdCompraGenerada=@item.Id" data-toggle="tooltip" data-placement="top" title="Agregar Producto">
                                                     <img src="~/Content/assets/images/ABM/Editar.png">
                                                 </a>
-                                                <a href="/Compras/Delete/@item.Id" data-toggle="tooltip" data-placement="top" title="Borrar">
+                                                <a href="/InsumosXCompras/Delete?IdCompraGenerada=@item.Id" data-toggle="tooltip" data-placement="top" title="Borrar">
                                                     <img src="~/Content/assets/images/ABM/Borrar.png">
                                                 </a>
                                             
